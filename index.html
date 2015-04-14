@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app='quoteBook'>
+<head>
+	<title>Quote Book</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+	<script src='app.js'></script>
+	<script src='mainController.js'></script>
+	<script src='service.js'></script>
+</head>
+<body ng-controller='mainControl'>
+	<header id="header" class="header">
+		<h1>Quote Page</h1>
+	</header><!-- /header -->
+	<div class='container'>
+
+		<div class='checkbox' layout='row'>	
+			<input type='checkbox' ng-model='addChecked'>Add a quote</input>
+			<input type='checkbox' ng-model='removeChecked'>Remove a quote</input>
+			<input type='checkbox' ng-model='filterChecked'>Filter Quotes</input><br/>
+		</div>
+		<div class='search' layout='row'>
+			<input ng-model='addDataQuote' placeholder='Add a quote here' ng-show="addChecked"></input>
+			<input ng-model='addDataAuthor' placeholder='Add the author here' ng-show="addChecked"></input>
+ 			<button ng-click='addData()' class='addButton' ng-show="addChecked">Add quote</button><br/>
+			<input ng-model='removeDataInput' placeholder='Remove a quote here' ng-show="removeChecked"></input>
+ 			<button ng-click='removeData()' class='removeButton' ng-show="removeChecked">Remove quote</button><br/>
+ 			<input ng-model='filterData' placeholder='Filter quotes here' ng-show="filterChecked"></input>
+		</div>
+		
+		<div class='main'>
+			<ul layout='row'>
+				<li ng-repeat='quote in quotes | filter: filterData track by $index' class='theQuotes'>
+					<button ng-click='removeQuote($index)'>Remove Quote</button>
+					<div class 'singleQuote'>
+						"{{quote.text}}"
+					</div>
+					<h5>{{quote.author}}</h5>
+				</li>
+			</ul>
+		</div><!-- quotes -->
+
+
+	</div> <!-- container -->
+</body>
+</html>
