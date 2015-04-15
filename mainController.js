@@ -18,11 +18,6 @@ app.controller('mainControl', function($scope, mainService) {
 		mainService.addData(newObj);
 	}
 
-	$scope.removeData =  function() {
-		var inputStr = $scope.removeDataInput;
-		mainService.removeData(inputStr);
-	}
-
 	$scope.removeQuote = function(index) {
         mainService.removeQuote(index);
 		console.log("Remove button clicked")

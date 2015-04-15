@@ -13,33 +13,36 @@
 	<script src='service.js'></script>
 </head>
 <body ng-controller='mainControl'>
-	<header id="header" class="header">
+	<header id="header" class="header" >
 		<h1>Quote Page</h1>
 	</header><!-- /header -->
 	<div class='container'>
 
-		<div class='checkbox' layout='row'>	
-			<input type='checkbox' ng-model='addChecked'>Add a quote</input>
-			<input type='checkbox' ng-model='removeChecked'>Remove a quote</input>
-			<input type='checkbox' ng-model='filterChecked'>Filter Quotes</input><br/>
+		<div class='checkbox' layout='row' layout-align='center center' layout='margin'>
+
+			<div>
+				<md-button ng-click='addData()' class="md-raised md-primary" ng-model="addChecked" layout-align='space-around center'>Add a quote</button>
+			</div>
+			<div>
+				<md-button ng-click='addData()' class="md-raised md-primary" ng-model="filter" layout-align='space-around center'>Filter Quotes</button>
+			</div>			
 		</div>
-		<div class='search' layout='row'>
+
+		<div class='search' layout='row' layout-sm='column' layout-align='center center' flex>
 			<input ng-model='addDataQuote' placeholder='Add a quote here' ng-show="addChecked"></input>
 			<input ng-model='addDataAuthor' placeholder='Add the author here' ng-show="addChecked"></input>
- 			<button ng-click='addData()' class='addButton' ng-show="addChecked">Add quote</button><br/>
-			<input ng-model='removeDataInput' placeholder='Remove a quote here' ng-show="removeChecked"></input>
- 			<button ng-click='removeData()' class='removeButton' ng-show="removeChecked">Remove quote</button><br/>
- 			<input ng-model='filterData' placeholder='Filter quotes here' ng-show="filterChecked"></input>
+ 			<md-button ng-click='addData()' class="md-raised md-primary" ng-show="addChecked">Add quote</button><br/>
+ 			<input ng-model='filterData' placeholder='Filter quotes here' ng-show="filter"></input>
 		</div>
 		
 		<div class='main'>
-			<ul layout='row'>
-				<li ng-repeat='quote in quotes | filter: filterData track by $index' class='theQuotes'>
-					<button ng-click='removeQuote($index)'>Remove Quote</button>
+			<ul layout='row' layout-sm='column'layout-margin layout-fill layout-padding layout-wrap>
+				<li ng-repeat='quote in quotes | filter: filterData track by $index' class='theQuotes' flex='30'>
 					<div class 'singleQuote'>
 						"{{quote.text}}"
 					</div>
 					<h5>{{quote.author}}</h5>
+					<md-button ng-click='removeQuote($index)'class="md-raised md-secondary removeButton" layout-align='center end'>Remove</button>
 				</li>
 			</ul>
 		</div><!-- quotes -->

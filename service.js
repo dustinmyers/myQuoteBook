@@ -26,18 +26,6 @@ app.service('mainService', function() {
 	  		}
 	  }
 
-	  this.removeData = function(str) {
-	  	for (var i = 0; i < quotes.length; i++) {
-	  		if (quotes[i].text === str) {
-	  			quotes.splice(quotes[i], 1);
-	  			console.log('Removed object from quotes');
-	  		}
-	  		else {
-	  			console.log('String not found in quotes');
-	  		}
-	  	}
-	  }
-
 	  this.removeQuote = function(index) {
 	  	quotes.splice(index, 1);
 	  };
